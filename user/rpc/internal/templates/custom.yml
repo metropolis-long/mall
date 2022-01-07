@@ -1,0 +1,9 @@
+kind: reverse
+name: mall
+source:
+  database: mysql
+  conn_str: 'root:a123456A@tcp(localhost:3306)/mall?parseTime=true'
+targets:
+- type: codes
+  language: golang
+  output_dir: ../data
