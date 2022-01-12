@@ -7,8 +7,28 @@ type (
 		Id   string `json:"id"`
 		Name string `json:"name"`
 	}
+	UserLikeReq {
+		Id string `path:"id"`
+	}
+	User {
+		Id   string `json:"id"`
+		Name string `json:"name"`
+	}
+
+	Like {
+		Id     string `json:"id"`
+		UserId string `json:"userId"`
+		Title  string `json:"title"`
+	}
+	UserLikeReply {
+		User  User   `json:"user"`
+		Likes []Like `json:"likes"`
+	}
 )
 service order {
 	@handler getOrder
 	get /api/order/get/:id (OrderReq) returns (OrderReply)
+	@handler findUserLike
+	get /api/findUserLike/get/:id (UserLikeReq) returns (UserLikeReply)
+	
 }

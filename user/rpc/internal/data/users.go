@@ -28,3 +28,25 @@ func (u *Users) GetUser(ID int64) (*Users, error) {
 	}
 	return &user, nil
 }
+
+func (u *Users) FindUserLike(id int64) (*UserLike,error) {
+	query := &Users{}
+	user, err := query.GetUser(id)
+	if err != nil {
+		fmt.Println(err)
+		fmt.Println("//////////////////////////////////////////////////////////")
+		return nil, err
+	}
+	likes := []*Like{}
+	//.Where("user_id", &id)
+	err = Db.Table("likes").Select("*").Scan(&likes).Error
+	if err != nil {
+		fmt.Println(err)
+		fmt.Println("777777777777777777777777777777777777777777777777777")
+		return nil, err
+	}
+	res := &UserLike{}
+	res.Likes = likes
+	res.User = *user
+	return res, nil
+}

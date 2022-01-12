@@ -19,6 +19,12 @@ type Users struct {
 	Group     uint64 `gorm:"type:int;"`
 	CreatedAt time.Time
 }
+
+type UserLike struct {
+	User  Users
+	Likes []*Like
+}
+
 type Result struct {
 	ProvinceCode int64
 	Total        int64

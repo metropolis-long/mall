@@ -9,3 +9,23 @@ type OrderReply struct {
 	Id   string `json:"id"`
 	Name string `json:"name"`
 }
+
+type UserLikeReq struct {
+	Id string `path:"id"`
+}
+
+type User struct {
+	Id   string `json:"id"`
+	Name string `json:"name"`
+}
+
+type Like struct {
+	Id     string `json:"id"`
+	UserId string `json:"userId"`
+	Title  string `json:"title"`
+}
+
+type UserLikeReply struct {
+	User  User   `json:"user"`
+	Likes []Like `json:"likes"`
+}

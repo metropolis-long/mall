@@ -17,6 +17,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/api/order/get/:id",
 				Handler: getOrderHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/api/findUserLike/get/:id",
+				Handler: findUserLikeHandler(serverCtx),
+			},
 		},
 	)
 }
