@@ -10,13 +10,16 @@ ENV GO111MODULE=on \
 WORKDIR /opt/mall/
 
 
-ADD go.mod .
-ADD go.sum .
-RUN go mod download
+# ADD go.mod .
+# ADD go.sum .
+# ADD app.sh .
 COPY . .
-COPY service/hello/etc /app/etc
-RUN go build -ldflags="-s -w" -o ./user/rpc/app  user/rpc/user.go 
+RUN go mod download \
+    && go build -o ./user/rpc/userapp  user/rpc/user.go \
+    && go build -o order/api/orderapp  order/api/order.go
+    # && chmod +x app.sh 
 # 声明服务端口
-EXPOSE 8080
+EXPOSE 8888
 # 启动容器时运行的命令
- CMD ["./user/rpc/app", "-f", "user/rpc/etc/user.yaml"]
+
+# CMD ["./app.sh"]

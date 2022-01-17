@@ -30,6 +30,7 @@ func main() {
 		user.RegisterUserServer(grpcServer, srv)
 
 		if c.Mode == service.DevMode || c.Mode == service.TestMode {
+			fmt.Println("```````````````````````````````````````````````")
 			reflection.Register(grpcServer)
 		}
 	})
